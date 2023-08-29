@@ -1,5 +1,21 @@
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 import StoryList from './components/StoryList'
+import { styled } from 'styled-components'
+
+
+
+const StyledHeader = styled.header`
+  background-color: #FF6600;
+  padding:2px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight:bold;
+  display:flex;
+  gap:5px;
+  align-items:center;
+  margin-bottom:0px;
+`;
+
+
 
 function App() {
 
@@ -37,9 +53,13 @@ function App() {
     return story[key].toLowerCase().includes(value.toLowerCase())
   }
 
+
+
+
   return (
     <>
-    <input type='text' onChange={handleSearch}/>
+    <StyledHeader>Search Stories: <input type='text' onChange={handleSearch}/></StyledHeader>
+    
 
     {storyDetails && <StoryList stories={filteredStoriesList}/>}
 

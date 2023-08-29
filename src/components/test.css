@@ -1,0 +1,12 @@
+.styledA {
+    color: black;
+    text-decoration: none;
+
+
+}
+
+.styledA:visited {
+    color: #828282;
+    text-decoration: none;
+
+}
