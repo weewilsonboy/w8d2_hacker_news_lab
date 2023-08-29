@@ -17,22 +17,30 @@ function App() {
         )
       )
       console.log(storyPromises)
-      Promise.all(storyPromises).then(storyData=>setStoryDetails(storyData))}
+      Promise.all(storyPromises).then(storyData=>{
+        setStoryDetails(storyData)
+        setFilteredStoriesList(storyData)
+      })}
     
   )
   },[])
   const handleSearch = (event)=>{
+    const searchValue = event.target.value
     const filteredStories = storyDetails.filter((story)=> {
-      return story.title.toLowerCase().includes(event.target.value.toLowerCase())
-    })
+      return findMatches(story, "title", searchValue) || findMatches(story, "by", searchValue)
+    }
+    )
     setFilteredStoriesList(filteredStories)
   }
 
+  const findMatches = (story, key, value)=>{
+    return story[key].toLowerCase().includes(value.toLowerCase())
+  }
 
   return (
     <>
     <input type='text' onChange={handleSearch}/>
-    
+
     {storyDetails && <StoryList stories={filteredStoriesList}/>}
 
     </>
